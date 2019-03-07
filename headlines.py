@@ -3,6 +3,8 @@ from flask import Flask
 import feedparser
 from flask import render_template
 from flask.views import MethodView
+from lxml import etree
+from urllib.request import urlopen
 import json
 
 app= Flask(__name__)
@@ -57,6 +59,30 @@ def get_one_journal(journal):
   dict_articles[journal] = articles[journal]
   dict_titles[journal] = Titles[journal]
   return render_template("home.html", articles=dict_articles,titles=dict_titles)
+
+  @app.route("/fotosMin")
+def get_miniature():
+  fotos = []
+  ns={"Atom" : "http://www.w3.org/2005/Atom"}
+  parser = etree.XMLParser()
+  tree = etree.parse(urlopen('https://api.flickr.com/services/feeds/photos_public.gne?tags=sevilla'),parser)
+  entries = tree.xpath('//Atom:entry', namespaces=ns) 
+  for i in entries:
+     unafoto = {}
+     unafoto['link'] = i.getchildren()[1].attrib['href']
+     unafoto['title'] = i.getchildren()[0].text
+     unafoto['src'] = i.getchildren()[9].attrib['href']
+     fotos.append(unafoto)
+  return render_template("home21.html", fotos=fotos)
+
+@app.route("/fotosSevilla")
+def get_fotos():
+  fotos = []
+  ns={"Atom" : "http://www.w3.org/2005/Atom"}
+  parser = etree.XMLParser()
+  tree = etree.parse(urlopen('https://api.flickr.com/services/feeds/photos_public.gne?tags=sevilla'),parser)
+  fotos = tree.xpath('//Atom:entry/Atom:title', namespaces=ns) 
+  return render_template("home2.html", fotos=fotos, show_fotos=1, show_news=0)
 
 class NewView(MethodView) :
   def get(self, journal='elp', id=None):
