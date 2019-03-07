@@ -60,6 +60,13 @@ def get_one_journal(journal):
   dict_titles[journal] = Titles[journal]
   return render_template("home.html", articles=dict_articles,titles=dict_titles)
 
+	@app.route("/elpais")
+def get_newss():
+  news = []
+  url = 'http://ep00.epimg.net/rss/tags/ultimas_noticias.xml'
+  news = feedparser.parse(url)['entries'][:5]
+  return render_template("home.html", news=news, show_fotos=0, show_news=1)
+
   @app.route("/fotosMin")
 def get_miniature():
   fotos = []
