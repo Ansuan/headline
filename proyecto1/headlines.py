@@ -40,6 +40,6 @@ def get_fotos():
   return render_template("home.html", fotos=fotos, show_fotos=1, show_news=0)
 
 if __name__ == '__main__':
-  app.run(port=5300,debug=True)
+  app.run(host='0.0.0.0',port=5301,debug=True)
 
 

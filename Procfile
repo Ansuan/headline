@@ -1,2 +1,2 @@
 web: gunicorn headlines:app
-test: cd proyecto1 && gunicorn headlines:app
+web: cd proyecto1 && gunicorn headlines:app
