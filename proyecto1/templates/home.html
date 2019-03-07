@@ -1,0 +1,25 @@
+<html>
+ <head>
+  <meta charset="UTF-8"/>
+  <title>Simple Application flask</title>
+ </head>
+ <body>
+  {% if show_fotos %}
+   <h2>Titulos de las últimas fotos de sevilla en Flickr</h2>
+   {% for i in fotos %}
+    <p>{{i.text}}</p>
+    <hr />
+   {% endfor %}
+  {% endif %}
+  {% if show_news %}
+   <h1>Headlines</h1>
+   <h2>Titulares de El Pais</h2>
+    {% for new in news %}
+     <b><a href="{{new.link}}">{{new.title}}</a></b><br />
+     <p>{{new.summary}}</p>
+     <hr />
+    {% endfor %}
+  {% endif %}
+ </body>
+</html>
+

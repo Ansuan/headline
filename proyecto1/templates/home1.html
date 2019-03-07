@@ -1,0 +1,19 @@
+<html>
+ <head>
+  <meta charset="UTF-8"/>
+  <title>Simple Application flask</title>
+ </head>
+ <body>
+   <h2>Titulos de las últimas fotos de sevilla en Flickr</h2>
+   {% for i in fotos %}
+     <p>
+       {{i['title']}} <br />
+        <a href={{i['src']}}>
+          <img border="0" alt="W3Schools" src={{i['src']}} width="100" height="100">
+        </a>
+     </p>
+    <hr />
+   {% endfor %}
+ </body>
+</html>
+
