@@ -4,7 +4,7 @@ import feedparser
 from flask import render_template
 from flask.views import MethodView
 from lxml import etree
-from urllib.request import urlopen
+from urllib import urlopen
 import json
 
 app= Flask(__name__)
