@@ -60,7 +60,7 @@ def get_one_journal(journal):
   dict_titles[journal] = Titles[journal]
   return render_template("home.html", articles=dict_articles,titles=dict_titles)
 
-	@app.route("/elpais")
+'''	@app.route("/elpais")
 def get_newss():
   news = []
   url = 'http://ep00.epimg.net/rss/tags/ultimas_noticias.xml'
@@ -89,8 +89,8 @@ def get_fotos():
   parser = etree.XMLParser()
   tree = etree.parse(urlopen('https://api.flickr.com/services/feeds/photos_public.gne?tags=sevilla'),parser)
   fotos = tree.xpath('//Atom:entry/Atom:title', namespaces=ns) 
-  return render_template("home2.html", fotos=fotos, show_fotos=1, show_news=0)
-
+  return render_template("home2.html", fotos=fotos, show_fotos=1, show_news=0)*/
+'''
 class NewView(MethodView) :
   def get(self, journal='elp', id=None):
      res = {}
